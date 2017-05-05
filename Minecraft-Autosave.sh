@@ -46,7 +46,7 @@ if cd $HOME/.minecraft && [ -d "assets" ] && [ -d "libraries" ] && [ -d "resourc
   fi
   while true; do
   dt=$(date '+%d/%m/%Y %H:%M:%S');
-  if ps ax | grep -v grep | grep java > /dev/null
+  if pgrep -f minecraft
   then
   git fetch;
   git add -v -A saves;
