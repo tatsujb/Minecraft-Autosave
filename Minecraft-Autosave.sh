@@ -18,7 +18,10 @@ if cd $HOME/.minecraft && [ -d "assets" ] && [ -d "libraries" ] && [ -d "resourc
     echo ""
     echo "#@$var2" >> .git/config
   else
-    if whiptail --yesno "Use found variable(s) $var1 $var2 $var3 ?" 7 90 ;then
+    var7=$((${#var3} + 29))
+    var5=$(yes " " | head -$(($var7 - ${#var1})) | tr -d "\n")
+    var6=$(yes " " | head -$(($var7 - ${#var2})) | tr -d "\n")
+    if whiptail --title "Use found variable(s) ?" --yesno "GitHub Username: $var1 $var5 Password:        "$( echo -e "$var2" | tr [:graph:] '*' )" $var6 GitHub Repo:     https://$var3" 9 $var7 ;then
       if [[ -z "$var3" ]] ; then
         read -p 'please type (or paste) personal Minecraft autosave github repo adress (ending with ".git") : ' var4
         git remote add origin $var4
@@ -45,19 +48,19 @@ if cd $HOME/.minecraft && [ -d "assets" ] && [ -d "libraries" ] && [ -d "resourc
     fi
   fi
   while true; do
-  dt=$(date '+%d/%m/%Y %H:%M:%S');
+  dt=$(date '+%d/%m/%Y %H:%M:%S')
   if pgrep -f minecraft
   then
-  git fetch;
-  git add -v -A saves;
-  git pull origin master --force;
-  git commit -m "$dt automated update"; #-q -u[no]
-  git remote -v;
-  git push https://$var1:$var2@$var3 master --force;
+  git fetch
+  git add -v -A saves
+  git pull origin master --force
+  git commit -m "$dt automated update" #-q -u[no]
+  git remote -v
+  git push https://$var1:$var2@$var3 master --force
   else
-  echo "Minecraft not running, run Minecraft to continue";
+  echo "Minecraft not running, run Minecraft to continue"
   fi
-  sleep 60;
+  sleep 60
   done
 else
     echo "There is no .minecraft folder. Run Minecraft first."
