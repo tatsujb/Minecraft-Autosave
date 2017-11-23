@@ -1,4 +1,4 @@
-# Minecraft-Autosave (LINUX ONLY)
+# Minecraft-Autosave (for linux & mac but also works on windows poweshell or git shell or ubuntu shell, thanks to win10, anniversary edition)
 Autosaves your minecraft save files and synchronizes across your computers
 
 
